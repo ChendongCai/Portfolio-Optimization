@@ -333,7 +333,7 @@ def evaluate(date,covm,gene_order,gene_weight,gene_weight_index,gene_alpha_index
 #    cum_prob=sorted(cum_prob.items(),key=lambda d:d[1])
 #    return prob,cum_prob,evaluation
 
-#轮盘选择
+#Roulette Selection
 def select(prob,cum_prob):
     threshold=rd.random()
     global idx
@@ -396,7 +396,6 @@ def crossover(order,weight,index1,index2,size):
         p21.append(l2[n])
 #    order[index1],order[index2]=p11,p21
     return p11,p21
-#weight是否需要crossover
 
 def mutation(po):
     point1=rd.randint(1,50)#size(index)
@@ -507,7 +506,7 @@ def present(date,cov,gene_order,gene_weight,iter_eva,final_eva):
         result[i]=date.SEDOL.iloc[i]
     result=pd.DataFrame(pd.Series(result)).reset_index(drop=True)
     result.rename(columns=lambda x:str(x).replace('0','STOCK'),inplace=True)
-#2.用 Dict 暴力修改
+#2.Use Dict to modify
     result['WEIGHT']=np.array(gene_weight[index[0][0]])
     BENCH_WEIGHT=[]
     BETA=[]
