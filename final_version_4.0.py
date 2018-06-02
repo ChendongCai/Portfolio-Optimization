@@ -49,9 +49,9 @@ for i in range(len(date)):
 #def gen():
     
 pc=0.6
-#交叉概率
+#crossover prob
 pm=0.01
-#变异概率
+#mutation prob
 #%%
 def createcovm(date,cov):    
     df=cov
@@ -386,7 +386,7 @@ def evaluate(last_sol,date_i,date_j,gene_order,gene_weight,gene_weight_index,gen
 #    cum_prob=sorted(cum_prob.items(),key=lambda d:d[1])
 #    return prob,cum_prob,evaluation
 
-#轮盘选择
+#Roulette Selection
 def select(prob,cum_prob):
     threshold=rd.random()
     global idx
@@ -449,7 +449,8 @@ def crossover(order,weight,index1,index2,size):
         p21.append(l2[n])
 #    order[index1],order[index2]=p11,p21
     return p11,p21
-#weight是否需要crossover
+
+#do weights need to undergo crossover process?
 
 def mutation(po):
     point1=rd.randint(1,50)#size(index)
@@ -561,7 +562,7 @@ def present(date,cov,gene_order,gene_weight,iter_eva,final_eva):
         result[i]=date.SEDOL.iloc[i]
     result=pd.DataFrame(pd.Series(result)).reset_index(drop=True)
     result.rename(columns=lambda x:str(x).replace('0','STOCK'),inplace=True)
-#2.用 Dict 暴力修改
+#2.use Dict to modify
     result['WEIGHT']=np.array(gene_weight[index[0][0]])
     BENCH_WEIGHT=[]
     BETA=[]
@@ -597,7 +598,7 @@ def present(date,cov,gene_order,gene_weight,iter_eva,final_eva):
     
     return result,constraint_6,constraint_7,constraint_8,constraint_9,constraint_10,constraint_11
 
-#将Dict转化为DataFrame，如果一个key只对应一个value：
+#Turn Dict into DataFrame，if each key only corresponds to a single value：
 #pd.DataFrame.from_dict(my_dict,orient='index').T
 #%%
 
