@@ -318,7 +318,7 @@ def evaluate(date,covm,gene_order,gene_weight,gene_weight_index,gene_alpha_index
 #    cum_prob=sorted(cum_prob.items(),key=lambda d:d[1])
 #    return prob,cum_prob,evaluation
 
-#轮盘选择
+#Roulette Selection
 def select(prob,cum_prob):
     threshold=rd.random()
     global idx
@@ -493,7 +493,7 @@ def present(date,cov,gene_order,gene_weight,iter_eva,final_eva):
         result[i]=date.SEDOL.iloc[i]
     result=pd.DataFrame(pd.Series(result)).reset_index(drop=True)
     result.rename(columns=lambda x:str(x).replace('0','STOCK'),inplace=True)
-#2.用 Dict 暴力修改
+#2.Use Dict to modify
     result['WEIGHT']=np.array(gene_weight[index[0][0]])
     BENCH_WEIGHT=[]
     BETA=[]
@@ -527,10 +527,6 @@ def present(date,cov,gene_order,gene_weight,iter_eva,final_eva):
     constraint_7,constraint_6=violate(gene_order,gene_weight,date) 
     constraint_9=len(result)
     return result,constraint_6,constraint_7,constraint_8,constraint_9,constraint_10,constraint_11
-
-#将Dict转化为DataFrame，如果一个key只对应一个value：
-#pd.DataFrame.from_dict(my_dict,orient='index').T
-#%%
 
 #Testing Running Time
 
