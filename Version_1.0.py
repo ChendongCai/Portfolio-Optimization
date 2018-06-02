@@ -48,9 +48,9 @@ for i in range(len(date)):
 #def gen():
     
 pc=0.6
-#交叉概率
+#crossover prob
 pm=0.01
-#变异概率
+#mutation prob
 
 #%%
 def initiate1(date,n,lim):
@@ -381,7 +381,6 @@ def crossover(order,weight,index1,index2,size):
         p21.append(l2[n])
 #    order[index1],order[index2]=p11,p21
     return p11,p21
-#weight是否需要crossover
 
 def mutation(po):
     point1=rd.randint(1,50)#size(index)
